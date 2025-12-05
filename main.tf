@@ -7,12 +7,13 @@ resource "aws_instance" "instance" {
 
 }
 resource "null_resource" "provisioner" {
+  for_each = var.components
   provisioner "remote-exec" {
     connection {
       type     = "ssh"
       user     = "ec2-user"
       password = "DevOps321"
-      host     = aws_instance.instance.private_ip
+      host     = aws_instance[each.key].instance.private_ip
     }
     inline = [
       "sudo dnf install python3.11-pip -y",
