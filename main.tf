@@ -13,7 +13,7 @@ resource "aws_instance" "instance" {
   provisioner "remote-exec" {
     inline = [
         "sudo dnf install python3.11-pip -y",
-        "sudo pip3.11 install ansible -y "
+        "sudo pip3.11 install ansible"
     ]
   }
   tags = {
