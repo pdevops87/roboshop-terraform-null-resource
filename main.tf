@@ -4,21 +4,21 @@ resource "aws_instance" "instance" {
   ami           = var.ami
   instance_type = var.instance_type
   iam_instance_profile = aws_iam_instance_profile.instance_profile.name
-  connection {
-    type     = "ssh"
-    user     = "ec2-user"
-    password = "DevOps321"
-    host     = self.public_ip
-  }
+
+}
+resource "null_resource" "provisioner" {
   provisioner "remote-exec" {
+    connection {
+      type     = "ssh"
+      user     = "ec2-user"
+      password = "DevOps321"
+      host     = aws_instance.instance.private_ip
+    }
     inline = [
-        "sudo dnf install python3.11-pip -y",
-        "sudo pip3.11 install ansible"
+      "sudo dnf install python3.11-pip -y",
+      "sudo pip3.11 install ansible"
     ]
   }
-  tags = {
-    Name = each.key
- }
 }
 
 # create a dns record
