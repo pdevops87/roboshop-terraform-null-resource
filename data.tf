@@ -22,5 +22,13 @@ data "aws_iam_policy_document" "policy" {
     resources = ["*"]
   }
 }
+data "aws_ami" "ami" {
+  most_recent      = true
+  owners = []
+  filter {
+    name   = "name"
+    values = ["RHEL-9-DevOps-Practice"]
+  }
+}
 
 
