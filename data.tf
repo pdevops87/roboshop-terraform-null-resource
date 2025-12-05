@@ -24,7 +24,7 @@ data "aws_iam_policy_document" "policy" {
 }
 data "aws_ami" "ami" {
   most_recent      = true
-  owners = []
+  owners = [973714476881]
   filter {
     name   = "name"
     values = ["RHEL-9-DevOps-Practice"]
