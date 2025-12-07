@@ -1,6 +1,6 @@
-variable "ami" {
-  default="ami-09c813fb71547fc4f"
-}
+# variable "ami" {
+#   default="ami-09c813fb71547fc4f"
+# }
 variable "instance_type" {
   default="t2.micro"
 }

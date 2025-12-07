@@ -1,10 +1,12 @@
 // to create a resource
 resource "aws_instance" "instance" {
   for_each      = var.components
-  ami           = var.ami
+  ami           = data.aws_ami.ami.image_id
   instance_type = var.instance_type
   iam_instance_profile = aws_iam_instance_profile.instance_profile.name
-
+tags = {
+  Name = each.key
+}
 }
 resource "null_resource" "provisioner" {
   for_each = var.components
